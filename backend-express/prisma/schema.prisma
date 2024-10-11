@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User{
+   id Int @id @default(autoincrement())
+   statusenabled Boolean @default(false)
+   username String? @db.VarChar(255)
+   password String? @db.VarChar(255)
+   createdAt DateTime @default(now())
+   @@map("users")
+}
+
+
+model Books {
+  id            Int      @id @default(autoincrement())
+  statusenabled Boolean  @default(false)
+  title         String?  @db.VarChar(255)
+  created_at    DateTime @default(now())
+
+  @@map("books")
+}
