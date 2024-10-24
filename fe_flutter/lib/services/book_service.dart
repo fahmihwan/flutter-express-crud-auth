@@ -3,11 +3,11 @@ import '../models/book.dart';
 import 'dart:convert';
 
 class BookService {
-  final String baseUrl = 'http://192.168.1.8:3000/api';
+  // final String baseUrl = 'http://192.168.1.8:3000/api';
   final ApiService _apiService = ApiService();
 
   Future<List<Book>> fetchBook() async {
-    final response = await _apiService.api.get('$baseUrl/books');
+    final response = await _apiService.api.get('/books');
     final Map<String, dynamic> body = response.data;
     if (response.statusCode == 200) {
       List<dynamic> bookJson = body['data'];
@@ -18,7 +18,7 @@ class BookService {
   }
 
   Future<Book> fetchBookById(int id) async {
-    final response = await _apiService.api.get('$baseUrl/book/$id');
+    final response = await _apiService.api.get('/book/$id');
     final Map<String, dynamic> body = response.data;
     if (response.statusCode == 200) {
       return Book.fromJson(body['data']);
@@ -28,8 +28,8 @@ class BookService {
   }
 
   Future<void> createBook(String title) async {
-    final response = await _apiService.api
-        .post('$baseUrl/book', data: jsonEncode({'title': title}));
+    final response =
+        await _apiService.api.post('/book', data: jsonEncode({'title': title}));
     final Map<String, dynamic> body = response.data;
     if (response.statusCode == 200) {
       print('Post created: ${body}');
@@ -39,7 +39,7 @@ class BookService {
   }
 
   Future<void> deleteBook(int id) async {
-    final response = await _apiService.api.delete('$baseUrl/book/$id');
+    final response = await _apiService.api.delete('/book/$id');
     if (response.statusCode == 200) {
       print('Post created: ${response.data}');
     } else {
@@ -49,7 +49,7 @@ class BookService {
 
   Future<void> updateBook(int id, String title) async {
     final response = await _apiService.api
-        .put('$baseUrl/book/$id', data: jsonEncode({"title": title}));
+        .put('/book/$id', data: jsonEncode({"title": title}));
     if (response.statusCode == 200) {
       print('Post created: ${response.data}');
     } else {

@@ -24,7 +24,7 @@ class ApiService {
         return handler.next(options);
       },
       onResponse: (response, handler) {
-        // navigatorKey.currentState?.pushNamed('/');
+        // navigatorKey.currentState?.pushNamed('/');s
         // if (response.statusCode == 401) {
         //   // Navigator.current.pushReplacementNamed('/login');
         //   navigatorKey.currentState?.pushNamed('/');
