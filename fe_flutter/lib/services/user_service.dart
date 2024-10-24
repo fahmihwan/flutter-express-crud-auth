@@ -11,7 +11,6 @@ class UserService {
           data: jsonEncode({'username': username, 'password': password}));
 
       final Map<String, dynamic> body = response.data;
-
       String token = body['data']['token'];
       await saveUserId(body['data']['user']['id']);
       await saveToken(token);

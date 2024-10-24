@@ -18,6 +18,7 @@ class _EditBookState extends State<EditBook> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final argument = ModalRoute.of(context)?.settings.arguments;
+    
     if (argument is int) {
       argumentId = argument;
       bookService.fetchBookById(argument).then((book) {
@@ -35,11 +36,12 @@ class _EditBookState extends State<EditBook> {
 
   void _submit() {
     final title = _titleController.text;
+    print(title);
     if (title.isNotEmpty) {
       bookService.updateBook(argumentId, title).then((value) {
         Navigator.pushNamed(
           context,
-          '/',
+          '/home',
         );
       });
     }
